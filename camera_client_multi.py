@@ -12,7 +12,7 @@ from multiprocessing import Process
 def Left():
 
 	IP_ROBOT = '192.168.1.221' #locale
-	PORT_ROBOT = 6666 #locale
+	PORT_ROBOT = 8888 #locale
 
 	clientsocket=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 	clientsocket.connect((IP_ROBOT,PORT_ROBOT))
@@ -41,7 +41,7 @@ def Left():
 def Right():
 
 	IP_ROBOT = '192.168.1.221' #locale
-	PORT_ROBOT = 6667 #locale
+	PORT_ROBOT = 6666 #locale
 
 	clientsocket=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 	clientsocket.connect((IP_ROBOT,PORT_ROBOT))
