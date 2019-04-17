@@ -27,8 +27,8 @@ def Left():
     while True:
     	try:
 		    ret,frame=cap.read()
-		    cv2.waitKey(10)
-		    frame = imutils.resize(frame, width=200)
+		    cv2.waitKey(50)
+		    frame = imutils.resize(frame, width=640)
 		    data = pickle.dumps(frame) ### new code
 		    conn.sendall(struct.pack("L", len(data))+data) ### new code
     	except KeyboardInterrupt:
@@ -52,7 +52,7 @@ def Right():
     while True:
 	    ret,frame=cap.read()
 	    cv2.waitKey(10)
-	    frame = imutils.resize(frame, width=200)
+	    frame = imutils.resize(frame, width=640)
 	    data = pickle.dumps(frame) ### new code
 	    conn.sendall(struct.pack("L", len(data))+data) ### new code
         
