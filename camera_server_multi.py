@@ -12,54 +12,50 @@ import imutils
 
 def Left():
     HOST = ''
-    PORT = 6666  #porta aperta al mio asus
+    PORT = 9999  #porta aperta al mio asus
 
     serversocket=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     print('Socket created')
 
     serversocket.bind((HOST, PORT))
     print('Socket bind complete')
-    serversocket.listen(5)
+    serversocket.listen(10)
     print('Socket now listening')
     conn, addr = serversocket.accept()
     cap=cv2.VideoCapture(0)
     
     while True:
-        try:    
-                ret,frame=cap.read()
-                cv2.waitKey(10)
-                frame = imutils.resize(frame, width=480)
-                data = pickle.dumps(frame) ### new code
-                conn.sendall(struct.pack("L", len(data))+data) ### new code
-        except KeyboardInterrupt:
-                serversocket.close()
+    	try:
+		    ret,frame=cap.read()
+		    cv2.waitKey(10)
+		    frame = imutils.resize(frame, width=200)
+		    data = pickle.dumps(frame) ### new code
+		    conn.sendall(struct.pack("L", len(data))+data) ### new code
+    	except KeyboardInterrupt:
+		    serversocket.close()
         
 
 
 def Right():
     HOST = ''
-    PORT = 6667   #porta aperta al mio asus
-
+    PORT = 8888   #porta aperta al mio asus
     serversocket=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     print('Socket created')
 
     serversocket.bind((HOST, PORT))
     print('Socket bind complete')
-    serversocket.listen(5)
+    serversocket.listen(10)
     print('Socket now listening')
     conn, addr = serversocket.accept()
-
-    cap=cv2.VideoCapture('http://192.168.43.230:7777/video')
+    cap=cv2.VideoCapture(1)
+    #'http://192.168.1.46:7777/video'
     while True:
-        try:
-                ret,frame=cap.read()
-                cv2.waitKey(10)
-                frame = imutils.resize(frame, width=480)
-                data = pickle.dumps(frame) ### new code
-                conn.sendall(struct.pack("L", len(data))+data) ### new code
-        except KeyboardInterrupt:
-                serversocket.close()
-                break
+	    ret,frame=cap.read()
+	    cv2.waitKey(10)
+	    frame = imutils.resize(frame, width=200)
+	    data = pickle.dumps(frame) ### new code
+	    conn.sendall(struct.pack("L", len(data))+data) ### new code
+        
 
 
 p_left =mp.Process(target=Left)

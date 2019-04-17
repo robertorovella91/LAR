@@ -11,8 +11,8 @@ from multiprocessing import Process
 
 def Left():
 
-	IP_ROBOT = '192.168.1.221' #locale
-	PORT_ROBOT = 8888 #locale
+	IP_ROBOT = 'X.X.X.X' #locale
+	PORT_ROBOT = 9999 #locale
 
 	clientsocket=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 	clientsocket.connect((IP_ROBOT,PORT_ROBOT))
@@ -25,10 +25,8 @@ def Left():
 	    while len(data) < payload_size:
 		    data += clientsocket.recv(4096)
 	    packed_msg_size = data[:payload_size]
-
 	    data = data[payload_size:]
 	    msg_size = struct.unpack("L", packed_msg_size)[0]
-	
 	    while len(data) < msg_size:
 		    data += clientsocket.recv(4096)
 	    frame_data = data[:msg_size]
@@ -40,8 +38,8 @@ def Left():
 	    cv2.waitKey(10)
 def Right():
 
-	IP_ROBOT = '192.168.1.221' #locale
-	PORT_ROBOT = 6666 #locale
+	IP_ROBOT = 'X.X.X.X' #locale
+	PORT_ROBOT = 8888 #locale
 
 	clientsocket=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 	clientsocket.connect((IP_ROBOT,PORT_ROBOT))
