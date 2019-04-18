@@ -24,22 +24,24 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-def gen(camera):
+def gen(camera,camera1):
     while True:
         #obj  = VideoCamera(0)
         frame = camera.get_frame()
+	frame1 = camera1.get_frame()
+        
 		#frame1 = frame
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-		#yield (b'--frame1\r\n'
-         #      b'Content-Type: image1/jpeg\r\n\r\n' + frame1 + b'\r\n\r\n')
+        yield (b'--frame1\r\n'
+               b'Content-Type: image/jpeg1\r\n\r\n' + frame1 + b'\r\n\r\n')
 
 @app.route('/video_feed')
 def video_feed():
     obj  = VideoCamera(0)
     obj1  = VideoCamera(1)
     
-    return Response(gen(obj),mimetype='multipart/x-mixed-replace; boundary=frame',gen(obj1),mimetype='multipart/x-mixed-replace; boundary=frame')
+    return Response(gen(obj,obj1),mimetype='multipart/x-mixed-replace; boundary=frame',gen(obj1),mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
     
