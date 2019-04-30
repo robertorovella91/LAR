@@ -22,7 +22,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('provahtml.html')
 
 def gen(camera,camera1):
     while True:
