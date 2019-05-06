@@ -44,7 +44,7 @@ def video_feed():
 
 @app.route('/video_feed1')
 def video_feed1():
-    obj1  = VideoCamera("http://192.168.1.46:7777/video")
+    #obj1  = VideoCamera("http://19")
     
     return Response(gen(obj1),mimetype='multipart/x-mixed-replace; boundary=frame')
 
@@ -53,4 +53,4 @@ def video_feed1():
 
 if __name__ == '__main__':
     
-    app.run(host='192.168.1.131',port=9999,threaded=True, debug=False)
+    app.run(host='192.168.43.134',port=9999,threaded=True, debug=False)

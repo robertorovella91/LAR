@@ -32,13 +32,13 @@ class VideoCamera(object):
         width  = image.shape[1]
         height = image.shape[0]
         distCoeff = np.zeros((4,1),np.float64)
-        print(image.shape[0],image.shape[1])
+        #print(image.shape[0],image.shape[1])
 
 	# TODO: add your coefficients here!
         k1 = 1.0e-3; # negative to remove barrel distortion
         k2 =0;
-        p1 = 1.0e-5; #rotondita orizzontale
-        p2 = 1.0e-5; #rotondità verticale
+        p1 = 0 #rotondita orizzontale
+        p2 = 0 #rotondità verticale
 
         distCoeff[0,0] = k1;
         distCoeff[1,0] = k2;
@@ -48,8 +48,8 @@ class VideoCamera(object):
 	# assume unit matrix for camera
         cam = np.eye(3,dtype=np.float32)
 
-        cam[0,2] = width/2.0  # define center x
-        cam[1,2] = height/2.0 # define center y
+        cam[0,2] = w/2.0  # define center x
+        cam[1,2] = h/2.0 # define center y
         cam[0,0] = 10.        # define focal length x
         cam[1,1] = 10.        # define focal length y
 
