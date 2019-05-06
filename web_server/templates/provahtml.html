@@ -3,7 +3,9 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body {
+body  ,html {
+  height: 100%;
+  margin: 0;
   font-family: Arial;
   color: white;
   
@@ -44,7 +46,7 @@ body {
 </div>
 
 <div class="split right">
-    <img  id="rightid" src="{{ url_for('video_feed1') }}" style="width:100%"  >
+    <img  id="rightid" src="{{ url_for('video_feed') }}" style="width:100%"  >
 <button onclick="openFullscreen();">Open Video in Fullscreen Mode</button>
 </div>
 

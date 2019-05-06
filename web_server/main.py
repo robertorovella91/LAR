@@ -24,7 +24,7 @@ app = Flask(__name__)
 def index():
     return render_template('provahtml.html')
 
-def gen(camera):#,camera1):
+def gen(camera):
     while True:
         #obj  = VideoCamera(0)
         frame = camera.get_frame()
@@ -39,10 +39,18 @@ def gen(camera):#,camera1):
 @app.route('/video_feed')
 def video_feed():
     obj  = VideoCamera(0)
-    #obj1  = VideoCamera(1)
     
     return Response(gen(obj),mimetype='multipart/x-mixed-replace; boundary=frame')
 
+@app.route('/video_feed1')
+def video_feed1():
+    #obj1  = VideoCamera("http://19")
+    
+    return Response(gen(obj1),mimetype='multipart/x-mixed-replace; boundary=frame')
+
+
+
+
 if __name__ == '__main__':
     
-    app.run(host='192.168.67.194',port=8888,threaded=True, debug=False)
+    app.run(host='192.168.1.131',port=9999,threaded=True, debug=False)
