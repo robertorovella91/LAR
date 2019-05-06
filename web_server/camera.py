@@ -1,4 +1,5 @@
 import cv2
+import numpy as np
 
 class VideoCamera(object):
     def __init__(self,n):
@@ -16,8 +17,35 @@ class VideoCamera(object):
     
     def get_frame(self):
         success, image = self.video.read()
+        width  = image.shape[1]
+        height = image.shape[0]
+        distCoeff = np.zeros((4,1),np.float64)
+
+	# TODO: add your coefficients here!
+        k1 = 1.0e-3; # negative to remove barrel distortion
+        k2 =0.0;
+        p1 = 1.0e-5; #rotondita orizzontale
+        p2 = 1.0e-5; #rotondità verticale
+
+        distCoeff[0,0] = k1;
+        distCoeff[1,0] = k2;
+        distCoeff[2,0] = p1;
+        distCoeff[3,0] = p2;
+
+	# assume unit matrix for camera
+        cam = np.eye(3,dtype=np.float32)
+
+        cam[0,2] = width/2.0  # define center x
+        cam[1,2] = height/2.0 # define center y
+        cam[0,0] = 10.        # define focal length x
+        cam[1,1] = 10.        # define focal length y
+
+	# here the undistortion will be computed
+        dst = cv2.undistort(image,cam,distCoeff)
+
+	
         # We are using Motion JPEG, but OpenCV defaults to capture raw images,
         # so we must encode it into JPEG in order to correctly display the
         # video stream.
-        ret, jpeg = cv2.imencode('.jpg', image)
+        ret, jpeg = cv2.imencode('.jpg', dst)
         return jpeg.tobytes()

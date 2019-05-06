@@ -6,6 +6,7 @@
 body {
   font-family: Arial;
   color: white;
+  
 }
 
 .split {
@@ -20,24 +21,44 @@ body {
 
 .left {
   left: 0;
-  background-color: #111;
+  
 }
 
 .right {
   right: 0;
-  background-color: red;
+  
 }
 
 </style>
 </head>
-<body>
+<body id="bg">
 
-<div class="split left">
-    <img id="bg" src="{{ url_for('video_feed') }}" style="width:100%"  >
+<div class="split left" >
+    <img id="leftid" src="{{ url_for('video_feed') }}" style="width:100%"  >
 </div>
 
 <div class="split right">
-    <img id="bg" src="{{ url_for('video_feed1') }}" style="width:100%" >
+    <img  id="rightid" src="{{ url_for('video_feed1') }}" style="width:100%"  >
+<button onclick="openFullscreen();">Open Video in Fullscreen Mode</button>
 </div>
+
+
+<script>
+var elem = document.getElementById("bg");
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { /* Firefox */
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE/Edge */
+    elem.msRequestFullscreen();
+  }
+  
+}
+</script>
+
      
 </body>
+</html>
