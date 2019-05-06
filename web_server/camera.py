@@ -17,13 +17,26 @@ class VideoCamera(object):
     
     def get_frame(self):
         success, image = self.video.read()
+
+		#resize
+        #w = 360
+        #h = 720
+        w = int(image.shape[1] * 80 / 100)
+        h = int(image.shape[0] * 120 / 100)
+        dim = (w, h)
+      
+        #image = image[0:image.shape[0], 100:image.shape[1]-100]
+        
+		# resize image
+        image = cv2.resize(image, dim, interpolation = cv2.INTER_AREA)
         width  = image.shape[1]
         height = image.shape[0]
         distCoeff = np.zeros((4,1),np.float64)
+        print(image.shape[0],image.shape[1])
 
 	# TODO: add your coefficients here!
         k1 = 1.0e-3; # negative to remove barrel distortion
-        k2 =0.0;
+        k2 =0;
         p1 = 1.0e-5; #rotondita orizzontale
         p2 = 1.0e-5; #rotondità verticale
 

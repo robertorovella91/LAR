@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial;
+  color: white;
+  
+}
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 0px;
+}
+
+.left {
+  left: 0;
+  
+}
+
+.right {
+  right: 0;
+  
+}
+
+</style>
+</head>
+<body id="bg">
+
+<div class="split left" >
+    <img id="leftid" src="{{ url_for('video_feed') }}" style="width:100%"  >
+</div>
+
+<div class="split right">
+    <img  id="rightid" src="{{ url_for('video_feed1') }}" style="width:100%"  >
+<button onclick="openFullscreen();">Open Video in Fullscreen Mode</button>
+</div>
+
+
+<script>
+var elem = document.getElementById("bg");
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.mozRequestFullScreen) { /* Firefox */
+    elem.mozRequestFullScreen();
+  } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE/Edge */
+    elem.msRequestFullscreen();
+  }
+  
+}
+</script>
+
+     
+</body>
+</html>
