@@ -3,7 +3,9 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body {
+body  html {
+  height: 100%;
+  margin: 0;
   font-family: Arial;
   color: white;
   
@@ -12,7 +14,7 @@ body {
 .split {
   height: 100%;
   width: 50%;
-  position: fixed;
+  position:fixed;
   z-index: 1;
   top: 0;
   overflow-x: hidden;
@@ -29,19 +31,56 @@ body {
   
 }
 
+
+.centered {
+  position:absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.coverleft {
+  /* The image used */
+  background-image: url("{{ url_for('video_feed') }}") ;
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.coverright {
+  /* The image used */
+  background-image: url("{{ url_for('video_feed') }}") ;
+
+  /* Full height */
+  height: 100%; 
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
 </style>
 </head>
 <body id="bg">
 
 <div class="split left" >
-    <img id="leftid" src="{{ url_for('video_feed') }}" style="width:100%"  >
+  <div class="coverleft">
+  </div>
 </div>
 
-<div class="split right">
-    <img  id="rightid" src="{{ url_for('video_feed1') }}" style="width:100%"  >
-<button onclick="openFullscreen();">Open Video in Fullscreen Mode</button>
-</div>
 
+<div class="split right" >
+<div class="coverright">
+</div>
+</div>
 
 <script>
 var elem = document.getElementById("bg");
