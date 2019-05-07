@@ -37,9 +37,10 @@ body  ,html{
 }
 
 .traspleft{
-  -ms-transform: translate(25px,0px); /* IE 9 */
-  -webkit-transform: translate(25px,0px); /* Safari */
-  transform: translate(0px,0px); /* Standard syntax */
+
+  transform: scale(1.2,1.2);
+  -ms-transform: scale(1.2,1.2); /* IE 9 */
+  -webkit-transform: scale(1.2,1.2); /* Safari */
 
 
 }
@@ -81,7 +82,7 @@ body  ,html{
 </head>
 
 <body id="bg";>
-<button  id="buttonFullScreen" class="btn" onclick="openFullscreen()";>Full Screen</button>
+<button  id="buttonFullScreen" class="btn" onclick="openFullscreen()";><input type="image" id="myimage" style="height:50px;width:50px;" src="button.png" /></button>
 <div class="split left" >
   <div class="traspleft" >
     <img id="leftid" src="{{ url_for('video_feed') }}" style=width:100%  >
