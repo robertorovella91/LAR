@@ -44,7 +44,7 @@ def video_feed():
 
 @app.route('/video_feed1')
 def video_feed1():
-    #obj1  = VideoCamera("http://19")
+    obj1  = VideoCamera(1)
     
     return Response(gen(obj1),mimetype='multipart/x-mixed-replace; boundary=frame')
 
