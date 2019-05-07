@@ -1,0 +1,3 @@
+<button onclick="openFullscreen();">Open Video in Fullscreen Mode</button>
+onkeydown="displayButton(event)"
+onkeydown="displayButton(event)"

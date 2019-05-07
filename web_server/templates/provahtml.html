@@ -4,10 +4,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body  ,html{
+  width: 100%;
   margin:0;
   font-family: Arial;
   color: white;
-  
 }
 
 .split {
@@ -23,11 +23,7 @@ body  ,html{
 
 .left {
   left: 0;
-
-
-  
 }
-
 .right {
   right: 0;
 }
@@ -40,45 +36,86 @@ body  ,html{
   transform: translate(-50%, -50%);
 }
 
-.traleft{
-  
+.traspleft{
   -ms-transform: translate(25px,0px); /* IE 9 */
   -webkit-transform: translate(25px,0px); /* Safari */
-  transform: translate(25px,0px); /* Standard syntax */
-
+  transform: translate(0px,0px); /* Standard syntax */
 }
 
-.traright {
+.traspright {
 
   -ms-transform: translate(-25px,0px); /* IE 9 */
   -webkit-transform: translate(-25px,0px); /* Safari */
-  transform: translate(-25px,0px); /* Standard syntax */
-
-
+  transform: translate(0px,0px); /* Standard syntax */
 }
 
 
+ .btn {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 10%);
+  -ms-transform: translate(-50%, 10%);
+  background-color: rgb(87, 169, 236);
+  color: white;
+  font-size: 18px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  z-index: 2;
+ 
+}
+  .btn:hover {
+  background-color: red;
+}
+.container {
+  position: absolute;
+  width: 100%;
+}
 
 </style>
 </head>
-<body id="bg";>
 
+<body id="bg";>
+<button  id="buttonFullScreen" class="btn" onclick="openFullscreen()";>Full Screen</button>
 <div class="split left" >
-  <div class="traleft" >
-    <img id="leftid" src="{{ url_for('video_feed') }}" style="width:100%"  >
+  <div class="traspleft" >
+    <img id="leftid" src="{{ url_for('video_feed') }}" style=width:100%  >
   </div>
 </div>
-
 <div class="split right">
-    <div class="traright" >
+ <div class="traspright" >
   <img  id="rightid" src="{{ url_for('video_feed') }}" style="width:100%"  >
-<button onclick="openFullscreen();">Open Video in Fullscreen Mode</button>
 </div>
 </div>
 
 
 <script>
+var btnfs =  document.getElementById("buttonFullScreen");
 var elem = document.getElementById("bg");
+
+function displayButton(event) {
+  var x = event.keyCode;
+  if(document.exitFullscreen){
+  if (x == 27) {  // 27 is the ESC key
+    btnfs.style.display = "block";
+  }
+  }
+}
+
+
+
+function FullScreenEvent() {
+  if(btnfs.style.display === "none"){
+    btnfs.style.display = "block";
+    }
+  else{
+    btnfs.style.display = "none";
+  }
+}
+
 function openFullscreen() {
   if (elem.requestFullscreen) {
     elem.requestFullscreen();
@@ -89,8 +126,13 @@ function openFullscreen() {
   } else if (elem.msRequestFullscreen) { /* IE/Edge */
     elem.msRequestFullscreen();
   }
-  
 }
+
+document.addEventListener("fullscreenchange", FullScreenEvent);
+document.addEventListener("webkitfullscreenchange", FullScreenEvent);
+
+
+
 </script>
 
      
