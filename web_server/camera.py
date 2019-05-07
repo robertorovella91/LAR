@@ -19,8 +19,6 @@ class VideoCamera(object):
         success, image = self.video.read()
 
 		#resize
-        #w = 360
-        #h = 720
         w = int(image.shape[1] * 80 / 100)
         h = int(image.shape[0] * 120 / 100)
         dim = (w, h)
@@ -35,10 +33,10 @@ class VideoCamera(object):
         #print(image.shape[0],image.shape[1])
 
 	# TODO: add your coefficients here!
-        k1 = 1.0e-3; # negative to remove barrel distortion
-        k2 =0;
-        p1 = 0 #rotondita orizzontale
-        p2 = 0 #rotondità verticale
+        k1 = 5.0e-4; # negative to remove barrel distortion
+        k2 = 0;
+        p1 = 0; #rotondita orizzontale
+        p2 = 0; #rotondità verticale
 
         distCoeff[0,0] = k1;
         distCoeff[1,0] = k2;

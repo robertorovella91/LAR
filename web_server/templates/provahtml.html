@@ -3,9 +3,8 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body  ,html {
-  height: 100%;
-  margin: 0;
+body  ,html{
+  margin:0;
   font-family: Arial;
   color: white;
   
@@ -20,8 +19,6 @@ body  ,html {
   overflow-x: hidden;
   overflow-y: hidden;
   padding-top: 0px;
- 
-  
 }
 
 .left {
@@ -33,21 +30,50 @@ body  ,html {
 
 .right {
   right: 0;
+}
+
+
+.centered {
+  position:absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.traleft{
+  
+  -ms-transform: translate(25px,0px); /* IE 9 */
+  -webkit-transform: translate(25px,0px); /* Safari */
+  transform: translate(25px,0px); /* Standard syntax */
+
+}
+
+.traright {
+
+  -ms-transform: translate(-25px,0px); /* IE 9 */
+  -webkit-transform: translate(-25px,0px); /* Safari */
+  transform: translate(-25px,0px); /* Standard syntax */
 
 
 }
+
+
 
 </style>
 </head>
 <body id="bg";>
 
 <div class="split left" >
+  <div class="traleft" >
     <img id="leftid" src="{{ url_for('video_feed') }}" style="width:100%"  >
+  </div>
 </div>
 
 <div class="split right">
-    <img  id="rightid" src="{{ url_for('video_feed') }}" style="width:100%"  >
+    <div class="traright" >
+  <img  id="rightid" src="{{ url_for('video_feed') }}" style="width:100%"  >
 <button onclick="openFullscreen();">Open Video in Fullscreen Mode</button>
+</div>
 </div>
 
 
